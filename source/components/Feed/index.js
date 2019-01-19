@@ -1,12 +1,19 @@
+// Core
 import React, { Component } from 'react';
 
+// Components
+import StatusBar from '../StatusBar';
 import Composer from '../Composer';
 import Post from '../Post';
+
+// Instruments
+import Styles from './styles.m.css';
 
 export default class Feed extends Component {
     render() {
         return (
-            <section>
+            <section className = { Styles.Feed }>
+                <StatusBar/>
                 <Composer />
                 <Post />
             </section>
