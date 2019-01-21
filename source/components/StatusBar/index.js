@@ -1,19 +1,27 @@
 // Core
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 // Instruments
 import Styles from './styles.m.css';
-import avatar from '../../theme/assets/bob.png';
 
 export default class index extends Component {
+    static propTypes = {
+        avatar:               PropTypes.string,
+        currentUserFirstName: PropTypes.string,
+        currentUserLastName:  PropTypes.string,
+    }
+
     render() {
+        const { avatar, currentUserFirstName, currentUserLastName } = this.props;
+
         return (
             <section className = { Styles.StatusBar }>
                 <button>
                     <img src = { avatar } />
-                    <span>Bob</span>
+                    <span>{currentUserFirstName}</span>
                     &nbsp;
-                    <span>Sponge</span>
+                    <span>{currentUserLastName}</span>
                 </button>
 
             </section>
