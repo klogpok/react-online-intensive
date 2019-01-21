@@ -1,17 +1,24 @@
 // Core
 import React, { Component } from 'react';
-import avatar from 'theme/assets/bob.png';
+import PropTypes from 'prop-types';
 
 // Instruments
 import Styles from './styles.m.css';
 
-export default class Feed extends Component {
+export default class Composer extends Component {
+    static propTypes = {
+        avatar:               PropTypes.string,
+        currentUserFirstName: PropTypes.string,
+    }
+
     render() {
+        const {avatar, currentUserFirstName} = this.props;
+
         return (
             <section className = { Styles.Composer }>
                 <img src = { avatar } />
                 <form>
-                    <textarea placeholder = { 'What\'s on your mind, Bob?' }></textarea>
+                    <textarea placeholder = { `What\'s on your mind, ${currentUserFirstName}?` }></textarea>
                     <input
                         type = 'submit'
                         value = 'Post'
