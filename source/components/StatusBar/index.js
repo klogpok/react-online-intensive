@@ -1,5 +1,6 @@
 // Core
 import React, { Component } from 'react';
+import { string } from 'prop-types';
 
 // Components
 import { Consumer } from '../HOC/withProfile';
@@ -8,6 +9,12 @@ import { Consumer } from '../HOC/withProfile';
 import Styles from './styles.m.css';
 
 export default class index extends Component {
+    static contextTypes = {
+        avatar:               string,
+        currentUserFirstName: string,
+        currentUserLastName:  string,
+    }
+
     render() {
         return (
             <Consumer>
