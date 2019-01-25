@@ -20,7 +20,6 @@ export default class index extends Component {
                             &nbsp;
                             <span>{context.currentUserLastName}</span>
                         </button>
-
                     </section>
                 )}
             </Consumer>
