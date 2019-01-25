@@ -1,6 +1,6 @@
 // Core
 import React, { Component } from 'react';
-import { string } from 'prop-types';
+//import { string } from 'prop-types';
 
 // Components
 import { Consumer } from '../HOC/withProfile';
@@ -10,12 +10,6 @@ import moment from 'moment';
 import Styles from './styles.m.css';
 
 export default class Post extends Component {
-    static contextTypes = {
-        avatar:               string,
-        currentUserFirstName: string,
-        currentUserLastName:  string,
-    }
-
     render() {
         return (
             <Consumer>
