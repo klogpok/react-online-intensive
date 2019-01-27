@@ -16,7 +16,7 @@ export default class Feed extends Component {
             {id: '123', comment: 'Howdy!', created: 1548437920737},
             {id: '345', comment: 'Awesome!', created: 1548437930737},
         ],
-        isSpinning: true,
+        isSpinning: false,
     }
 
     render() {
