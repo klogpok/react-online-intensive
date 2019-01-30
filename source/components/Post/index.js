@@ -12,21 +12,37 @@ import Styles from './styles.m.css';
 
 export default class Post extends Component {
     static propTypes = {
-        comment:   string.isRequired,
-        created:   number.isRequired,
-        id:        string.isRequired,
-        _likePost: func.isRequired,
-        likes:     array.isRequired,
+        comment:     string.isRequired,
+        created:     number.isRequired,
+        id:          string.isRequired,
+        _likePost:   func.isRequired,
+        likes:       array.isRequired,
+        _removePost: func.isRequired,
+    }
+
+    constructor() {
+        super();
+
+        this._removePost = this._removePost.bind(this);
+    }
+
+    _removePost() {
+        const { id, _removePost } = this.props;
+
+        _removePost(id);
     }
 
     render() {
-        const {comment, created, id, _likePost, likes} = this.props;
+        const {comment, created, id, _likePost, likes } = this.props;
 
         return (
             <Consumer>
                 {(context) => (
                     <section className = { Styles.post }>
-                        <span className = { Styles.cross }>X</span>
+                        <span
+                            className = { Styles.cross }
+                            onClick = { this._removePost }>
+                        </span>
                         <img src = { context.avatar } />
                         <a>{`${context.currentUserFirstName} ${context.currentUserLastName}`}</a>
                         <time>{moment.unix(created).format('MMMM D H:mm')}</time>
