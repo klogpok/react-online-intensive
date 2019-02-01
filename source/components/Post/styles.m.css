@@ -59,5 +59,10 @@
     &:hover {
       background-position: -13px 0;
     }
+
+    .cross2 {
+      content: '';
+      position: absolute;
+    }
   }
 }

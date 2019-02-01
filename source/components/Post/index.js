@@ -40,7 +40,7 @@ export default class Post extends Component {
                 {(context) => (
                     <section className = { Styles.post }>
                         <span
-                            className = { Styles.cross }
+                            className = { Styles.cross2 }
                             onClick = { this._removePost }>
                         </span>
                         <img src = { context.avatar } />
