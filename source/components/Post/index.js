@@ -34,13 +34,14 @@ export default class Post extends Component {
 
     render() {
         const {comment, created, id, _likePost, likes } = this.props;
+        console.log(Styles);
 
         return (
             <Consumer>
                 {(context) => (
                     <section className = { Styles.post }>
                         <span
-                            className = { Styles.cross2 }
+                            className = { Styles.cross }
                             onClick = { this._removePost }>
                         </span>
                         <img src = { context.avatar } />

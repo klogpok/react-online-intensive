@@ -58,11 +58,22 @@
 
     &:hover {
       background-position: -13px 0;
-    }
+    }    
+  }
 
-    .cross2 {
-      content: '';
-      position: absolute;
-    }
+  &::befor {
+    content: '';
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    width: 10px;
+    height: 10px;
+    background-image: url('../../theme/assets/cross.png');
+    background-repeat: no-repeat;
+    cursor: pointer;
+
+    &:hover {
+      background-position: -13px 0;
+    }   
   }
 }

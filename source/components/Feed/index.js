@@ -96,11 +96,9 @@ export default class Feed extends Component {
 
         await delay(1200);
 
-        const newPosts = this.state.posts.filter((post) => post.id !== id);
-
-        this.setState(({ isPostFetching }) => ({
-            posts:          newPosts,
-            isPostFetching: !isPostFetching,
+        this.setState(({ posts }) => ({
+            posts:          posts.filter((post) => post.id !== id),
+            isPostFetching: false,
         }));
     }
 
