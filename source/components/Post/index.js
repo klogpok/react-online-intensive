@@ -26,7 +26,7 @@ export default class Post extends Component {
         this._removePost = this._removePost.bind(this);
     }
 
-    _removePost() {
+    _removePost = () => {
         const { id, _removePost } = this.props;
 
         _removePost(id);
@@ -34,7 +34,7 @@ export default class Post extends Component {
 
     render() {
         const {comment, created, id, _likePost, likes } = this.props;
-        console.log(Styles);
+        //console.log(Styles);
 
         return (
             <Consumer>
@@ -52,7 +52,6 @@ export default class Post extends Component {
                             _likePost = { _likePost }
                             id = { id }
                             likes = { likes }
-                            { ...context }
                         />
                     </section>
                 )}
