@@ -13,15 +13,15 @@ import Styles from './styles.m.css';
 @withProfile
 export default class Post extends Component {
     static propTypes = {
-        comment:              string.isRequired,
-        created:              number.isRequired,
-        id:                   string.isRequired,
-        _likePost:            func.isRequired,
-        likes:                array.isRequired,
-        _removePost:          func.isRequired,
-        avatar:               string.isRequired,
-        currentUserFirstName: string.isRequired,
-        currentUserLastName:  string.isRequired,
+        comment:     string.isRequired,
+        created:     number.isRequired,
+        id:          string.isRequired,
+        _likePost:   func.isRequired,
+        likes:       array.isRequired,
+        _removePost: func.isRequired,
+        avatar:      string.isRequired,
+        firstName:   string.isRequired,
+        lastName:    string.isRequired,
     }
 
     constructor() {
@@ -29,6 +29,18 @@ export default class Post extends Component {
 
         this._removePost = this._removePost.bind(this);
     }
+
+    _getCross = () => {
+        const { firstName, lastName, currentUserFirstName, currentUserLastName} = this.props;
+
+        return `${firstName} ${lastName}` === `${currentUserFirstName} ${currentUserLastName}` ? (
+            <span
+                className = { Styles.cross }
+                onClick = { this._removePost }>
+            </span>)
+            : null;
+    }
+
 
     _removePost = () => {
         const { id, _removePost } = this.props;
@@ -44,17 +56,16 @@ export default class Post extends Component {
             _likePost,
             likes,
             avatar,
-            currentUserFirstName,
-            currentUserLastName } = this.props;
+            firstName,
+            lastName } = this.props;
+
+        const cross = this._getCross();
 
         return (
             <section className = { Styles.post }>
-                <span
-                    className = { Styles.cross }
-                    onClick = { this._removePost }>
-                </span>
+                { cross }
                 <img src = { avatar } />
-                <a>{`${currentUserFirstName} ${currentUserLastName}`}</a>
+                <a>{`${firstName} ${lastName}`}</a>
                 <time>{moment.unix(created).format('MMMM D H:mm')}</time>
                 <p>{comment}</p>
                 <Like
