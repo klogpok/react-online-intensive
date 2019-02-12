@@ -1,7 +1,7 @@
 // Core
 import React, { Component } from 'react';
 import { string } from 'prop-types';
-import { Transition } from 'react-transition-group';
+import { Transition, CSSTransition, TransitionGroup } from 'react-transition-group';
 import { fromTo, to } from 'gsap';
 
 // Components
@@ -168,18 +168,26 @@ export default class Feed extends Component {
 
         const postsJSX = posts.map((post) => {
             return (
-                <Catcher key = { post.id }>
-                    <Post
-                        { ...post }
-                        _likePost = { this._likePost }
-                        _removePost = { this._removePost }
-                    />
-                </Catcher>
+                <CSSTransition
+                    classNames = {{
+                        enter:       Styles.postInStart,
+                        enterActive: Styles.postInEnd,
+                    }}
+                    key = { post.id }
+                    timeout = {{enter: 500, exit: 400}}>
+                    <Catcher>
+                        <Post
+                            { ...post }
+                            _likePost = { this._likePost }
+                            _removePost = { this._removePost }
+                        />
+                    </Catcher>
+                </CSSTransition>
             );
         });
 
         return (
-            <section className = { Styles.Feed }>
+            <section className = { Styles.feed }>
                 <Spinner isPostFetching = { isPostFetching } />
                 <StatusBar />
                 <Transition
@@ -189,7 +197,6 @@ export default class Feed extends Component {
                     onEnter = { this._animateComposerEnter }>
                     <Composer _createPost = { this._createPost }/>
                 </Transition>
-                {postsJSX}
                 <Transition
                     appear
                     in = { this.state.postmanIn }
@@ -198,6 +205,9 @@ export default class Feed extends Component {
                     onExited = { this._animatePostmanExited }>
                     <Postman />
                 </Transition>
+                <TransitionGroup>
+                    {postsJSX}
+                </TransitionGroup>
             </section>
         );
     }
