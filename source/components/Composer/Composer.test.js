@@ -107,7 +107,7 @@ describe('composer component', () => {
 
     test('should handle textarea <<onKeyPress>> event', () => {
         result.find('textarea').simulate('keypress', {
-            key: 'Enterp',
+            key: 'Enter',
         });
 
         expect(_submitOnEnterSpy).toHaveBeenCalledTimes(1);
