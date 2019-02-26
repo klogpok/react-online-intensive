@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { string } from 'prop-types';
 import { Transition } from 'react-transition-group';
 import { fromTo } from 'gsap';
+import { Link } from 'react-router-dom';
 
 // Components
 import { withProfile } from '../HOC/withProfile';
@@ -16,7 +17,6 @@ class StatusBar extends Component {
     static propTypes = {
         avatar:               string.isRequired,
         currentUserFirstName: string.isRequired,
-        currentUserLastName:  string.isRequired,
     }
 
     state = {
@@ -47,8 +47,7 @@ class StatusBar extends Component {
     }
 
     render() {
-        const { avatar, currentUserFirstName, currentUserLastName} = this.props;
-
+        const { avatar, currentUserFirstName} = this.props;
         const { online } = this.state;
 
         const statusStyle = cx(Styles.status, {
@@ -69,12 +68,14 @@ class StatusBar extends Component {
                         <div>{ statusMessage }</div>
                         <span />
                     </div>
-                    <button>
+                    <Link to = '/profile'>
                         <img src = { avatar } />
                         <span>{currentUserFirstName}</span>
-                                &nbsp;
-                        <span>{currentUserLastName}</span>
-                    </button>
+                    </Link>
+
+                    <Link to = '/feed'>
+                        Feed
+                    </Link>
                 </section>
             </Transition>
         );
