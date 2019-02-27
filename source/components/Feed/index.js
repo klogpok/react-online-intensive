@@ -1,6 +1,6 @@
 // Core
 import React, { Component } from 'react';
-import { string } from 'prop-types';
+import { string, bool } from 'prop-types';
 import { Transition, CSSTransition, TransitionGroup } from 'react-transition-group';
 import { fromTo, to } from 'gsap';
 
@@ -165,6 +165,8 @@ export default class Feed extends Component {
 
     render() {
         const { posts, isPostFetching } = this.state;
+
+        const { login } = this.props;
 
         const postsJSX = posts.map((post) => {
             return (

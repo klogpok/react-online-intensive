@@ -1,6 +1,6 @@
 // Core
 import React, { Component } from 'react';
-import { string } from 'prop-types';
+import { string, func, bool } from 'prop-types';
 import { Transition } from 'react-transition-group';
 import { fromTo } from 'gsap';
 import { Link } from 'react-router-dom';
@@ -17,6 +17,8 @@ class StatusBar extends Component {
     static propTypes = {
         avatar:               string.isRequired,
         currentUserFirstName: string.isRequired,
+        login:                bool.isRequired,
+        onLogout:             func.isRequired,
     }
 
     state = {
@@ -46,8 +48,18 @@ class StatusBar extends Component {
         fromTo(statusBar, 1, { opacity: 0 }, { opacity: 1 });
     }
 
+    onLogout = (event) => {
+        event.preventDefault();
+        this.props.onLogout();
+    }
+
+    onLogin = (event) => {
+        event.preventDefault();
+        this.props.onLogin();
+    }
+
     render() {
-        const { avatar, currentUserFirstName} = this.props;
+        const { avatar, currentUserFirstName, login } = this.props;
         const { online } = this.state;
 
         const statusStyle = cx(Styles.status, {
@@ -68,6 +80,7 @@ class StatusBar extends Component {
                         <div>{ statusMessage }</div>
                         <span />
                     </div>
+
                     <Link to = '/profile'>
                         <img src = { avatar } />
                         <span>{currentUserFirstName}</span>
@@ -76,6 +89,8 @@ class StatusBar extends Component {
                     <Link to = '/feed'>
                         Feed
                     </Link>
+
+                    { login && <a onClick = { this.onLogout } >Logout</a> }
                 </section>
             </Transition>
         );
